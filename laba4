@@ -1,0 +1,35 @@
+import math
+
+a = 2
+b = 3
+
+num_segments = 1000
+
+delta_theta = (2 * math.pi) / num_segments
+
+ellipse_perimeter = 0
+
+for i in range(num_segments):
+    angle = i * delta_theta
+
+    x = a * math.cos(angle)
+    y = b * math.sin(angle)
+
+    if i > 0:
+        delta_x = x - previous_x
+        delta_y = y - previous_y
+        segment_length = math.sqrt(delta_x ** 2 + delta_y ** 2)
+        ellipse_perimeter += segment_length
+
+    previous_x = x
+    previous_y = y
+
+delta_x = x - previous_x
+delta_y = y - previous_y
+segment_length = math.sqrt(delta_x ** 2 + delta_y ** 2)
+ellipse_perimeter += segment_length
+
+print(f"Периметр эллипса: {ellipse_perimeter}")
+
+Ramanujan = math.pi * (3 * (a + b) - math.sqrt((3 * a + b) * (a + 3 * b)))
+print(f"Периметр эллипса через Раманджун {Ramanujan}")
